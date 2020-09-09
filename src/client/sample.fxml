@@ -10,7 +10,6 @@
         <Button text="auth" onAction="#tryToAuth" minWidth="50"/>
     </HBox>
 
-
     <TextArea fx:id="textArea" VBox.vgrow="ALWAYS" editable="false"/>
 
     <HBox fx:id="msgPanel" visible="false" managed="false">

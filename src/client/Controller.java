@@ -60,7 +60,7 @@ public class Controller implements Initializable {
         setAuthenticated(false);
     }
 
-    private void connect(){
+    private void connect() {
         try {
             socket = new Socket(IP_ADDRESS, PORT);
             in = new DataInputStream(socket.getInputStream());
@@ -123,7 +123,7 @@ public class Controller implements Initializable {
     }
 
     public void tryToAuth(ActionEvent actionEvent) {
-        if(socket == null || socket.isClosed()){
+        if (socket == null || socket.isClosed()) {
             connect();
         }
 
@@ -137,9 +137,9 @@ public class Controller implements Initializable {
         }
     }
 
-    private void setTitle(String nick){
-        Platform.runLater(()->{
-            ((Stage)textField.getScene().getWindow()).setTitle(TITLE +" "+ nick);
+    private void setTitle(String nick) {
+        Platform.runLater(() -> {
+            ((Stage) textField.getScene().getWindow()).setTitle(TITLE + " " + nick);
         });
     }
 }
