@@ -9,7 +9,7 @@ public class SimpleAuthService implements AuthService {
         String password;
         String nickname;
 
-        public UserData(String login, String password, String nickname) {
+        public UserData(String login, String password, String nickname, int id) {
             this.login = login;
             this.password = password;
             this.nickname = nickname;
@@ -21,12 +21,12 @@ public class SimpleAuthService implements AuthService {
     public SimpleAuthService() {
         users = new ArrayList<>();
         for (int i = 1; i <= 10; i++) {
-            users.add(new UserData("login" + i, "pass" + i, "nick" + i));
+            users.add(new UserData("login" + i, "pass" + i, "nick" + i, i));
         }
 
-        users.add(new UserData("qwe" , "qwe" , "qwe" ));
-        users.add(new UserData("asd" , "asd" , "asd" ));
-        users.add(new UserData("zxc" , "zxc" , "zxc" ));
+        users.add(new UserData("qwe", "qwe", "qwe", 11));
+        users.add(new UserData("asd", "asd", "asd", 12));
+        users.add(new UserData("zxc", "zxc", "zxc", 13));
     }
 
     @Override

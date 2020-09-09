@@ -14,7 +14,7 @@ public class Server {
     ServerSocket server = null;
     Socket socket = null;
 
-    public Server(){
+    public Server() {
         clients = new Vector<>();
         authService = new SimpleAuthService();
 
@@ -44,18 +44,29 @@ public class Server {
         return authService;
     }
 
-    public void broadcastMsg(ClientHandler sender, String msg){
+    public void broadcastMsg(ClientHandler sender, String msg) {
         String message = String.format("%s : %s", sender.getNickname(), msg);
         for (ClientHandler c : clients) {
             c.sendMsg(message);
         }
     }
 
-    public void subscribe(ClientHandler clientHandler){
+    public void personalMsg(ClientHandler sender, String msg, String name) {
+        String message = String.format("%s : %s", sender.getNickname(), msg);
+        for (ClientHandler c : clients) {
+            if (clients.equals(name)) {
+                c.sendPrivateMsg(message, name);
+//            } else {
+//                c.sendMsg(message);
+            }
+        }
+    }
+
+    public void subscribe(ClientHandler clientHandler) {
         clients.add(clientHandler);
     }
 
-    public void unsubscribe(ClientHandler clientHandler){
+    public void unsubscribe(ClientHandler clientHandler) {
         clients.remove(clientHandler);
     }
 

@@ -12,6 +12,8 @@ public class ClientHandler {
     private DataOutputStream out;
 
     private String nickname;
+    private String personalName;
+    private String personalMessage;
 
     public ClientHandler(Server server, Socket socket) {
         try {
@@ -53,7 +55,16 @@ public class ClientHandler {
                             break;
                         }
 
-                        server.broadcastMsg(this, str);
+                        if (str.startsWith("/w")) {
+                            personalName = str.split(" ", 3)[1];
+                            personalMessage = str.split(" ", 3)[2];
+                            server.personalMsg(this, personalMessage, personalName);
+                        }
+
+                        if (!str.startsWith("/w")) {
+                            server.broadcastMsg(this, str);
+                        }
+
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -76,6 +87,14 @@ public class ClientHandler {
     void sendMsg(String msg) {
         try {
             out.writeUTF(msg);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    void sendPrivateMsg(String msg, String name) {
+        try {
+            out.writeUTF(msg);                      //здесь застрял..
         } catch (IOException e) {
             e.printStackTrace();
         }
